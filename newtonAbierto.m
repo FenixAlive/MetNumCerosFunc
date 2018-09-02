@@ -24,7 +24,7 @@ iu = input("\n\tCuantas iteraciones: ");
 % f2x = @(x)(2*x+2*sin(x));
 
  fx = @(x)(x^2-2);
- f2x = @(x)(2*x)
+ f2x = @(x)(2*x);
 
 %variables para iteraciones
 xn = [];
