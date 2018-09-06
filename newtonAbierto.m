@@ -44,7 +44,7 @@ for i = 1:iu
     fprintf("\n   %d | %.20f |%.15f |%.15f | %.20f | %.30f ", i, temp(1), temp(2), temp(3), temp(4), temp(5))
   elseif fx(x0) < 0 
     fprintf("\n   %d | %.20f |%.15f | %.15f | %.20f | %.30f ", i, temp(1), temp(2), temp(3), temp(4), temp(5))
-  elseif fx(m) < 0
+  elseif fx(x0) < 0
     fprintf("\n   %d | %.20f | %.15f |%.15f | %.20f | %.30f ", i, temp(1), temp(2), temp(3), temp(4), temp(5))
   else
     fprintf("\n   %d | %.20f | %.15f | %.15f | %.20f | %.30f ", i, temp(1), temp(2), temp(3), temp(4), temp(5))
