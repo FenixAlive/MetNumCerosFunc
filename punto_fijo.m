@@ -1,7 +1,7 @@
 % format long;
 
- sol = .7146210577792838;
-% sol =sqrt(2);
+% sol = .7146210577792838;
+ sol = 0;
 
 %funcion linea
 function linea(n)
@@ -20,15 +20,15 @@ iu = input("\n\tCuantas iteraciones: ");
 
 
 % hacer funcion
- fx = @(x)(tan(x)-3*(x**3));
- 
+% fx = @(x)(tan(x)-3*(x**3));
+ fx = @(x)((x-3).^(1/3));
 
 %variables para iteraciones
 xn = [];
 temp = [];
 
 linea(139); 
-fprintf("\n\t\t Xn \t\t     f(Xn) \t\t   f\'(Xn) \t     err-abs \t\t     err-rel")
+fprintf("\n\t\t Xn \t\t     f(Xn) \t\t    err-abs \t\t     err-rel")
 linea(139); 
 
 %hacer iteraciones
@@ -39,6 +39,8 @@ for i = 1:iu
   xn = [xn; temp];
   fprintf("\n   %d | %.25f | %.15f | %.20f | %.30f ", i, temp(1), temp(2), temp(3), temp(4));
 end
+
+xn
 
 fprintf("\n");
 linea(139); 

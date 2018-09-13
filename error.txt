@@ -1,0 +1,11 @@
+En biseccion, la q que esta elevada en el error es 1.
+
+en caso de newton:
+
+el error mss grande es cuadratico 2
+
+con euler el error es 3
+
+para sacar la O()- mayuscula, el lim cuando x tiende a inf. se pone el exponente mas grande
+
+la o() minuscula es la potencia mas grande mas 1 para que de 0.

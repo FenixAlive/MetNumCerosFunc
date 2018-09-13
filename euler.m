@@ -20,15 +20,17 @@ iu = input("\n\tCuantas iteraciones: ");
 
 
 % hacer funcion
- fx = @(x)(x^2-2*cos(x)+1);
- f1x = @(x)(2*x+2*sin(x));
- f2x = @(x)(2+2*cos(x));
+% fx = @(x)(x^2-2*cos(x)+1);
+% f1x = @(x)(2*x+2*sin(x));
+% f2x = @(x)(2+2*cos(x));
 
 % fx = @(x)(x^2-2);
 % f1x = @(x)(2*x);
 % f2x = @(x)(2);
  
-
+fx = @(x)(x.^3-x+3);
+f1x = @(x)(3*x.^2-1);
+f2x = @(x)(6*x);
 
 %variables para iteraciones
 xn = [];
@@ -52,3 +54,4 @@ end
 fprintf("\n");
 linea(139); 
 fprintf("\n");
+xn
