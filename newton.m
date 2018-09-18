@@ -20,6 +20,8 @@ function s = newton(x0, fx, f2x, c, iu, sol)
   %variables para iteraciones
   xn = [];
   temp = [];
+  err = 1;
+  errrel = 1;
 
   linea(139); 
   fprintf("\n\t i \t Xn \t\t     f(Xn) \t\t   f\'(Xn) \t     err-abs \t\t     err-rel")
@@ -29,7 +31,16 @@ function s = newton(x0, fx, f2x, c, iu, sol)
     %hacer iteraciones
     for i = 1:iu
       x0 = x0 - fx(x0)/f2x(x0);
-      err = abs(sol - x0);
+      if (sol ~= 0)
+        err = abs(sol - x0);
+        errrel = err/sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 2);
+          err = abs(mant-x0);
+          errrel = err/mant;
+        end
+      end
       temp = [i x0 fx(x0) f2x(x0) err err/x0];
       xn = [xn; temp];
     end
@@ -39,10 +50,19 @@ function s = newton(x0, fx, f2x, c, iu, sol)
     errtemp = 0;
     i = 1;
     
-    while abs(err-errtemp) > iu
+    while abs(err) > iu
       errtemp = err;
       x0 = x0 - fx(x0)/f2x(x0);
-      err = abs(sol - x0)
+      if (sol ~= 0)
+        err = abs(sol - x0);
+        errrel = err/sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 2)
+          err = abs(mant-x0);
+          errrel = err/mant;
+        end
+      end
       temp = [i x0 fx(x0) f2x(x0) err err/x0];
       xn = [xn; temp];
       i++;

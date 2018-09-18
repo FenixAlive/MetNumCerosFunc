@@ -26,9 +26,9 @@ function r = biseccion(a, b, fx, c, iu, x0)
         errrel = err/x0;
       else
         if(i > 1)
-          mant = xn(k-1, 3)
-          err = abs(mant-m)
-          errrel = err / mant
+          mant = xn(i-1, 3);
+          err = abs(mant-m);
+          errrel = err / mant;
         end
       end
 
@@ -44,19 +44,16 @@ function r = biseccion(a, b, fx, c, iu, x0)
   elseif c == 1
     %hacer while
     i = 1 
-    err= iu + 1
-    errtemp = 0
-    while abs(err - errtemp) > iu
-      errtemp = err
-      m = (a+b)/2
+    while abs(err) > iu
+      m = (a+b)/2;
       if (x0 ~= 0)
         err = abs(x0 - m);
         errrel = err/x0;
       else
         if(i > 1)
-          mant = xn(k-1, 3)
-          err = abs(mant-m)
-          errrel = err / mant
+          mant = xn(i-1, 3);
+          err = abs(mant-m);
+          errrel = err / mant;
         end
       end
       xn = [xn; [i a m b fx(a) fx(m) err err/x0]];

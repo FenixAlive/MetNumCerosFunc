@@ -20,12 +20,23 @@ function s = secante(x0, x1, fx, c, iu, sol)
   %variables para iteraciones
   xn = [];
   temp = [];
+  err = 1;
+  errrel = 1;
 
   %hacer iteraciones
   if c == 0
     for i = 1:iu
       m = x0 - (fx(x0)*(x1-x0))/(fx(x1)-fx(x0));
-      err = abs(sol - m);
+      if (sol ~= 0)
+        err = abs(sol - m);
+        errrel = err/sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 3);
+          err = abs(mant-m);
+          errrel = err / mant;
+        end
+      end
       temp = [i x0 x1 m fx(x0) fx(m) err err/x0];
       xn = [xn; temp];
       % biseccion
@@ -36,10 +47,19 @@ function s = secante(x0, x1, fx, c, iu, sol)
     err = 1+iu;
     errtemp = 0;
     i = 1;
-    while abs(err - errtemp) > iu
+    while abs(err) > iu
       errtemp = err;
       m = x0 - (fx(x0)*(x1-x0))/(fx(x1)-fx(x0));
-      err = abs(sol - m)
+      if (sol ~= 0)
+        err = abs(sol - m);
+        errrel = err/sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 3);
+          err = abs(mant-m);
+          errrel = err / mant;
+        end
+      end
       temp = [i x0 x1 m fx(x0) fx(m) err err/x0];
       xn = [xn; temp];
       % biseccion

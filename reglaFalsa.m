@@ -20,13 +20,25 @@ function s = reglaFalsa(x0, x1, fx, c, iu, sol)
   format long;
 
   xn = [];
+  err = 1
+  errrel = 1
   
   if c == 0
 
     %hacer iteraciones
     for i = 1:iu
       m = x0 - (fx(x0)*(x1-x0))/(fx(x1)-fx(x0));
-      err = abs(sol - m);
+      if (sol ~= 0)
+        err = abs(x0 - m)
+        errrel = err / sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 3)
+          err = abs(mant - m)
+          errrel = err / mant;
+        end
+      end
+      
       xn = [xn; [i x0 m x1 fx(x0) fx(m) err err/x0]];
       
       % regla falsa
@@ -42,10 +54,19 @@ function s = reglaFalsa(x0, x1, fx, c, iu, sol)
     err = 1 + iu;
     errtemp = 0;
     i = 1
-    while abs(err-errtemp) > iu
+    while abs(err) > iu
       errtemp = err;
       m = x0 - (fx(x0)*(x1-x0))/(fx(x1)-fx(x0));
-      err = abs(sol - m)
+      if (sol ~= 0)
+        err = abs(x0 - m)
+        errrel = err / sol;
+      else
+        if(i > 1)
+          mant = xn(i-1, 3)
+          err = abs(mant - m)
+          errrel = err / mant;
+        end
+      end
       xn = [xn; [i x0 m x1 fx(x0) fx(m) err err/x0]];      
       % regla falsa
       if(fx(x0)*fx(m)<0)
